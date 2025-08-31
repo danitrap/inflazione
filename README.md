@@ -1,50 +1,118 @@
-# Welcome to your Expo app 👋
+# 📊 Rivalutazione Monetaria - App React Native
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Un'applicazione mobile per calcolare la rivalutazione del denaro in base all'inflazione italiana dal 1999 ad oggi.
 
-## Get started
+## 🚀 Funzionalità
 
-1. Install dependencies
+- **Calcolo Rivalutazione**: Inserisci un importo e una data per vedere quanto vale oggi
+- **Dati Ufficiali**: Utilizza i dati ISTAT dell'inflazione italiana (1999-2024)
+- **Cronologia**: Salva e rivedi i tuoi calcoli precedenti
+- **Interfaccia Intuitiva**: Design moderno e facile da usare
+- **Spiegazioni Dettagliate**: Comprendi l'impatto dell'inflazione sul tuo denaro
 
-   ```bash
-   npm install
-   ```
+## 📱 Come funziona
 
-2. Start the app
+1. **Inserisci l'importo** originale (es. €1000)
+2. **Seleziona il periodo** di partenza (es. Gennaio 2010)
+3. **Visualizza il risultato**: quanto vale oggi quell'importo
+4. **Salva nella cronologia** per riferimenti futuri
 
-   ```bash
-   npx expo start
-   ```
+### Esempio
+€1000 di Gennaio 2010 valgono circa €1300 oggi (Luglio 2024) - un aumento del ~30% dovuto all'inflazione.
 
-In the output, you'll find options to open the app in a
+## 🛠 Struttura del Progetto
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+inflazione-app/
+├── App.js                 # Entry point e navigazione
+├── src/
+│   ├── components/        # Componenti riutilizzabili
+│   │   ├── AmountInput.js    # Input valore monetario
+│   │   ├── DatePicker.js     # Selezione periodo
+│   │   ├── ResultCard.js     # Visualizzazione risultati
+│   │   └── HistoryItem.js    # Item cronologia
+│   ├── screens/           # Schermate dell'app
+│   │   ├── HomeScreen.js     # Schermata principale
+│   │   ├── ResultScreen.js   # Risultati dettagliati
+│   │   └── HistoryScreen.js  # Cronologia calcoli
+│   ├── services/          # Logica business
+│   │   ├── inflationService.js  # Calcoli inflazione
+│   │   └── storageService.js    # AsyncStorage
+│   ├── data/
+│   │   └── inflazione.json   # Dati inflazione 1999-2024
+│   └── utils/
+│       └── formatters.js     # Helper formattazione
+└── db/
+    └── inflazione.csv        # Dati originali ISTAT
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🔧 Installazione e Avvio
 
-## Learn more
+### Prerequisiti
+- Node.js (≥18)
+- Expo CLI
+- Simulator iOS/Android o dispositivo fisico
 
-To learn more about developing your project with Expo, look at the following resources:
+### Setup
+```bash
+# Installa dipendenze
+npm install
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+# Avvia l'app in development
+npx expo start
 
-## Join the community
+# Per dispositivi fisici con tunnel
+npx expo start --tunnel
+```
 
-Join our community of developers creating universal apps.
+### Dipendenze Principali
+- **React Native + Expo**: Framework mobile
+- **React Navigation**: Navigazione tra schermate
+- **AsyncStorage**: Persistenza dati locale
+- **DateTimePicker**: Selezione date
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 📊 Dati Inflazione
+
+L'app utilizza dati ufficiali ISTAT:
+- **Periodo**: Gennaio 1999 - Luglio 2024
+- **Frequenza**: Mensile
+- **Indici**: Prezzi al consumo per l'intera collettività
+- **Formula**: `Valore Rivalutato = Valore × (Indice Finale / Indice Iniziale)`
+
+## 💡 Esempi di Utilizzo
+
+### Scenario 1: Acquisto Casa
+- **Importo**: €200.000 (2005)
+- **Risultato**: ~€260.000 oggi
+- **Significato**: Il potere d'acquisto si è ridotto del 30%
+
+### Scenario 2: Stipendio
+- **Importo**: €1.500/mese (2010)
+- **Risultato**: ~€1.950/mese oggi
+- **Significato**: Serve il 30% in più per lo stesso tenore di vita
+
+## 🔄 Aggiornamento Dati
+
+Per aggiornare i dati inflazione:
+1. Sostituire `db/inflazione.csv` con dati aggiornati
+2. Eseguire lo script di conversione (già incluso nell'app)
+3. I nuovi dati saranno automaticamente disponibili
+
+## 📝 Note Tecniche
+
+- **Persistenza**: Cronologia salvata localmente con AsyncStorage
+- **Performance**: Dati embedded nell'app per velocità
+- **Compatibilità**: iOS e Android
+- **Offline**: Funziona senza connessione internet
+
+## 🎯 Prossimi Sviluppi
+
+- [ ] Grafici interattivi dell'inflazione
+- [ ] Export risultati in PDF/Excel
+- [ ] Widget per schermata home
+- [ ] Notifiche aggiornamento dati
+- [ ] Supporto altre valute europee
+
+---
+
+Sviluppata con ❤️ usando i dati ufficiali ISTAT dell'inflazione italiana.

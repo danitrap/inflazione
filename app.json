@@ -24,7 +24,6 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router",
       [
         "expo-splash-screen",
         {
@@ -35,8 +34,11 @@
         }
       ]
     ],
-    "experiments": {
-      "typedRoutes": true
-    }
+    "extra": {
+      "eas": {
+        "projectId": "2a0a6cf4-33d8-4cca-a252-7d3bcd5b0e9a"
+      }
+    },
+    "owner": "danitrap"
   }
 }
